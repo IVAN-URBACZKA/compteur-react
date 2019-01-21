@@ -1,26 +1,60 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, { Component , Fragment } from 'react';
 import './App.css';
+import Screen from './Components/Screen'
+import Button from './Components/Button'
+
 
 class App extends Component {
+
+  state = {
+    num : 0
+  }
+
+  handleAdd =  () => {
+     this.setState({
+       state : this.state.num += 1
+     })
+  }
+
+  handleLess =  () => {
+    this.setState({
+      state : this.state.num -= 1
+    })
+ }
+  
   render() {
+  const { num } = this.state;
+  const { title } = this.props;
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Fragment>
+
+        
+        
+       <main>
+
+       <h1>{ title }</h1>
+
+       <Screen num={num} />
+
+       <div className="buttons">
+
+       <Button action={this.handleAdd} name='+' />
+
+       <Button action={this.handleLess} name='-' />
+
+
+       </div>
+
+
+
+
+       </main>
+
+
+       
+
+
+      </Fragment>
     );
   }
 }
